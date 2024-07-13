@@ -1,0 +1,8 @@
+<%- layout('./layouts/main.ejs') %> 
+<% if(user) { %>
+    <h1 class="text-center mt-5 mx-5 popp sombrat">Bienvenido de vuelta!</h1>
+    <h2 class="text-center mb-5 mx-5 popp sombrat"><%= user.name %> <%= user.lastname %></h2>
+<% } else { %> 
+    <h1 class="text-center mt-5 mx-5 popp">Quests API</h1>
+    <h2 class="text-center mb-5 mx-5 popp">¡Bienvenido!</h2>
+<% } %> 

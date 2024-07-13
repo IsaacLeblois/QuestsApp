@@ -1,0 +1,74 @@
+<%- layout('./layouts/main.ejs') %> 
+<h1 class="text-center mt-5 mx-5 popp sombrat">Solicitar pregunta a la API</h1>
+<div class="container mt-5">
+    <div class="col text-center">
+        <table class="table table-hover">
+            <div class="text-end mb-3">
+                <button class="btn btn-primary rounded" data-toggle="modal" data-target=".bd-example-modal-sm">Agregar pregunta</button>
+                <a href="/api/randomquest" class="btn btn-info rounded">Solicitar a API</a>
+            </div>
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Pregunta</th>
+                <th scope="col">Tema</th>
+                <th scope="col">Jugadores</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% if(quests) { %>
+                    <% quests.forEach( e => { %>
+                    <tr>
+                        <th scope="row"><%= e.id %></th>
+                        <td><%= e.quest %></td>
+                        <td><%= e.topic %></td>
+                        <td><%= e.ageR %></td>
+                    </tr>
+                    <% }) %>
+                <% } %>
+            </tbody>
+          </table>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded">
+        <div class="card-body p-5">
+            <h3 class="mb-4 text-center">Agregar pregunta</h3>
+            <form action="/quests/create" method="POST" class="d-grid gap-2">
+                <div class="form-group">
+                    <input class="form-control rounded" type="text" name="quest" placeholder="Escribe la pregunta">
+                </div>
+                <div class="form-group">
+                    <label for="topic" class="form-label mt-2">Selecciona el tema.</label>
+                    <select name="topic" id="topic" class="form-select rounded">
+                        <option value="Historia">Historia</option>
+                        <option value="Cultura">Cultura</option>
+                        <option value="Ciencia">Ciencia</option>
+                        <option value="Geografia">Geografia</option>
+                        <option value="Deportes">Deportes</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="ageR" class="form-label mt-2">Selecciona la edad.</label>
+                    <select name="ageR" id="ageR" class="form-select rounded">
+                        <option value="Niños">Niños</option>
+                        <option value="Adolescentes">Adolescentes</option>
+                        <option value="Adultos">Adultos</option>
+                    </select>
+                </div>
+                <div class="row mt-4">
+                    <div class="col">
+                        <button class="btn btn-primary w-100 rounded" data-dismiss="modal">Volver</button>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-success w-100 rounded" type="submit">Agregar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+</div>
